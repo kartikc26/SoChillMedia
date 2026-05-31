@@ -122,10 +122,11 @@ export default function CinematicHero() {
         .to(".phone-screen-team", { autoAlpha: 1, duration: 0.8 }, "-=0.3");
       if (isMobile) scrollTl.to(".mockup-scroll-wrapper", { opacity: 1, duration: 0.4 });
       scrollTl
-        .to(".scene-team", { autoAlpha: 1, duration: 0.8 })
+        .to(".scene-team", { autoAlpha: 1, opacity: 1, duration: 0.8 })
         .fromTo(".scene-team .team-card", { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, stagger: 0.15, ease: "power3.out", duration: 1 }, "-=0.3");
-      if (isMobile) scrollTl.to(".mockup-scroll-wrapper", { opacity: 0.45, ease: "power2.inOut", duration: 1.2 });
-      scrollTl.to({}, { duration: 3 });
+      scrollTl.to({}, { duration: 1.5 }); // Wait for cards to animate before fading mockup
+      if (isMobile) scrollTl.to(".mockup-scroll-wrapper", { opacity: 0.45, ease: "power2.inOut", duration: 1 });
+      scrollTl.to({}, { duration: 1.5 });
 
       // PHASE 5: Team → Contact
       scrollTl
@@ -134,10 +135,11 @@ export default function CinematicHero() {
         .to(".phone-screen-contact", { autoAlpha: 1, duration: 0.8 }, "-=0.3");
       if (isMobile) scrollTl.to(".mockup-scroll-wrapper", { opacity: 1, duration: 0.4 });
       scrollTl
-        .to(".scene-contact", { autoAlpha: 1, duration: 0.8 })
+        .to(".scene-contact", { autoAlpha: 1, opacity: 1, duration: 0.8 })
         .fromTo(".scene-contact .contact-item", { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, stagger: 0.1, ease: "power3.out", duration: 0.8 }, "-=0.3");
-      if (isMobile) scrollTl.to(".mockup-scroll-wrapper", { opacity: 0.45, ease: "power2.inOut", duration: 1.2 });
-      scrollTl.to({}, { duration: 2.5 });
+      scrollTl.to({}, { duration: 1.2 }); // Wait for items to animate
+      if (isMobile) scrollTl.to(".mockup-scroll-wrapper", { opacity: 0.45, ease: "power2.inOut", duration: 1 });
+      scrollTl.to({}, { duration: 2 });
 
       // PHASE 6: Exit
       scrollTl.to(".main-card", { scale: 0.9, opacity: 0, ease: "power3.in", duration: 1.5 });

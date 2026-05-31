@@ -102,12 +102,13 @@ export const team = [
 // ============================================================
 export const navScrollTargets: Record<string, number> = {
   services: 6500,
-  about: 9000,
-  contact: 11000,
+  about: 7000,
+  team: 9000,
+  contact: 12500, // For Let's Work Together CTA
 };
 
 export const navLinks = [
   { label: "Services", key: "services" },
   { label: "About", key: "about" },
-  { label: "Contact", key: "contact" },
+  { label: "Team", key: "team" },
 ];

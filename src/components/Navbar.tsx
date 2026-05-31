@@ -21,14 +21,14 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/60 border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between py-2 md:py-3">
+        <div className="flex items-center justify-between py-1 md:py-2">
           <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
             <Image
               src="/logo.png"
               alt="SoChillMedia"
-              width={120}
-              height={120}
-              className="rounded-lg w-16 h-16 md:w-[120px] md:h-[120px]"
+              width={150}
+              height={150}
+              className="rounded-lg w-20 h-20 md:w-[150px] md:h-[150px]"
             />
           </a>
 

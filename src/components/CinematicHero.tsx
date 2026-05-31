@@ -457,7 +457,7 @@ export default function CinematicHero() {
             <div className="w-full max-w-7xl mx-auto px-4 lg:px-12 flex flex-col lg:flex-row items-center gap-6 lg:gap-12">
               <div className="lg:w-1/3 text-center lg:text-left order-2 lg:order-1">
                 <p className="text-blue-400 text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-2">What We Do</p>
-                <h3 className="text-white text-xl sm:text-2xl lg:text-3xl font-bold mb-4 tracking-tight">Everything your brand needs.</h3>
+                <h3 className="text-white text-lg sm:text-xl lg:text-3xl font-bold mb-4 tracking-tight">Everything your brand needs.</h3>
                 <div className="space-y-2">
                   {services.map((s, i) => (
                     <div key={i} className="service-item flex items-center gap-3 text-left p-2 rounded-lg hover:bg-white/[0.02] transition-colors">
@@ -534,19 +534,19 @@ export default function CinematicHero() {
               </div>
               <div className="lg:w-1/3 order-1 lg:order-2" />
               <div className="lg:w-1/3 order-3 space-y-3">
-                <div className="contact-item p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+                <div className="contact-item p-4 rounded-xl bg-white/[0.06] border border-white/[0.12]">
                   <p className="text-neutral-500 text-[10px] uppercase tracking-wider mb-1">Phone</p>
                   <a href={`tel:${contactInfo.phone}`} className="text-white text-sm font-medium hover:text-blue-400 transition-colors">{contactInfo.phone}</a>
                 </div>
-                <div className="contact-item p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+                <div className="contact-item p-4 rounded-xl bg-white/[0.06] border border-white/[0.12]">
                   <p className="text-neutral-500 text-[10px] uppercase tracking-wider mb-1">Email</p>
                   <a href={`mailto:${contactInfo.email}`} className="text-white text-sm font-medium hover:text-blue-400 transition-colors">{contactInfo.email}</a>
                 </div>
-                <div className="contact-item p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+                <div className="contact-item p-4 rounded-xl bg-white/[0.06] border border-white/[0.12]">
                   <p className="text-neutral-500 text-[10px] uppercase tracking-wider mb-1">Instagram</p>
                   <a href={contactInfo.instagram} target="_blank" rel="noopener noreferrer" className="text-white text-sm font-medium hover:text-blue-400 transition-colors">{contactInfo.instagramHandle}</a>
                 </div>
-                <div className="contact-item p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+                <div className="contact-item p-4 rounded-xl bg-white/[0.06] border border-white/[0.12]">
                   <p className="text-neutral-500 text-[10px] uppercase tracking-wider mb-1">Website</p>
                   <p className="text-white text-sm font-medium">{contactInfo.website}</p>
                 </div>

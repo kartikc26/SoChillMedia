@@ -126,18 +126,20 @@ Just change the `value` and `label` strings.
 ### Change Nav Links / Scroll Positions
 
 ```ts
-export const navScrollTargets: Record<string, number> = {
-  services: 6500,   // ← pixel position to scroll to
-  about: 9000,
-  contact: 11000,
+// Percentages (0 to 1) — works on any device/screen size
+export const navScrollProgress: Record<string, number> = {
+  services: 0.35,  // 35% down the page
+  team: 0.58,      // 58% down the page
+  contact: 0.82,   // 82% down the page
 };
 
 export const navLinks = [
   { label: "Services", key: "services" },  // ← what shows in navbar
-  { label: "About", key: "about" },
-  { label: "Contact", key: "contact" },
+  { label: "Team", key: "team" },
 ];
 ```
+
+To add a nav button: add to both `navScrollProgress` and `navLinks`. See `DOCS.md` for full guide.
 
 ---
 

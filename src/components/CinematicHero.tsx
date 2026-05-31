@@ -453,7 +453,7 @@ export default function CinematicHero() {
           </div>
 
           {/* SERVICES SCENE */}
-          <div className="scene-services absolute inset-0 flex items-center z-10">
+          <div className="scene-services absolute inset-0 flex items-center z-10 pt-16 lg:pt-0">
             <div className="w-full max-w-7xl mx-auto px-4 lg:px-12 flex flex-col lg:flex-row items-center gap-6 lg:gap-12">
               <div className="lg:w-1/3 text-center lg:text-left order-2 lg:order-1">
                 <p className="text-blue-400 text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-2">What We Do</p>

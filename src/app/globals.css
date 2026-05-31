@@ -184,7 +184,7 @@ section {
 .progress-ring {
   transform: rotate(-90deg);
   transform-origin: center;
-  stroke-dasharray: 402;
-  stroke-dashoffset: 402;
+  stroke-dasharray: 364;
+  stroke-dashoffset: 364;
   stroke-linecap: round;
 }

@@ -26,9 +26,9 @@ export default function Navbar() {
             <Image
               src="/logo.png"
               alt="SoChillMedia"
-              width={80}
-              height={80}
-              className="rounded-lg w-12 h-12 md:w-16 md:h-16"
+              width={100}
+              height={100}
+              className="rounded-lg w-14 h-14 md:w-20 md:h-20"
             />
           </a>
 

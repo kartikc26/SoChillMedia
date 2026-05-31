@@ -98,7 +98,7 @@ export default function CinematicHero() {
         )
         .to(".mockup-scroll-wrapper", { autoAlpha: 1, duration: 1.5, ease: "power2.inOut" }, "-=0.5")
         .fromTo(".phone-widget", { y: 40, autoAlpha: 0, scale: 0.95 }, { y: 0, autoAlpha: 1, scale: 1, stagger: 0.1, ease: "back.out(1.2)", duration: 1.2 }, "-=1.5")
-        .to(".progress-ring", { strokeDashoffset: 60, duration: 2, ease: "power3.inOut" }, "-=1.0")
+        .to(".progress-ring", { strokeDashoffset: 0, duration: 2, ease: "expo.out" }, "-=1.0")
         .to(".counter-val", { innerHTML: 50, snap: { innerHTML: 1 }, duration: 2, ease: "expo.out" }, "-=2.0")
         .fromTo(".floating-badge.badge-brands", { y: 100, autoAlpha: 0, scale: 0.7 }, { y: 0, autoAlpha: 1, scale: 1, ease: "back.out(1.5)", duration: 1.5 }, "-=1.5")
         .fromTo(".floating-badge.badge-reels", { y: 100, autoAlpha: 0, scale: 0.7 }, { y: 0, autoAlpha: 1, scale: 1, ease: "back.out(1.5)", duration: 1.2 }, "-=1.0")
@@ -453,7 +453,7 @@ export default function CinematicHero() {
           </div>
 
           {/* SERVICES SCENE */}
-          <div className="scene-services absolute inset-0 flex items-center z-10 pt-16 lg:pt-0">
+          <div className="scene-services absolute inset-0 flex items-center z-10 pt-20">
             <div className="w-full max-w-7xl mx-auto px-4 lg:px-12 flex flex-col lg:flex-row items-center gap-6 lg:gap-12">
               <div className="lg:w-1/3 text-center lg:text-left order-2 lg:order-1">
                 <p className="text-blue-400 text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-2">What We Do</p>

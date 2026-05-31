@@ -2,13 +2,19 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { navLinks, navScrollTargets } from "@/data/site-data";
+import { navLinks, navScrollProgress } from "@/data/site-data";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const scrollTo = (key: string) => {
-    window.scrollTo({ top: navScrollTargets[key] ?? 0, behavior: "smooth" });
+    // Calculate actual scroll position from page's total scrollable height
+    // Works on any device: desktop (14000px), mobile (7000px), or any size
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = navScrollProgress[key] ?? 0;
+    const targetScroll = progress * maxScroll;
+    
+    window.scrollTo({ top: targetScroll, behavior: "smooth" });
     setMobileOpen(false);
   };
 

@@ -1,9 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { contactInfo, navLinks, navScrollTargets } from "@/data/site-data";
+import { contactInfo, navLinks, navScrollProgress } from "@/data/site-data";
 
 export default function Footer() {
+  const scrollTo = (key: string) => {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = navScrollProgress[key] ?? 0;
+    window.scrollTo({ top: progress * maxScroll, behavior: "smooth" });
+  };
+
   return (
     <footer className="border-t border-white/5 py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,7 +23,7 @@ export default function Footer() {
             {navLinks.map((link) => (
               <button
                 key={link.key}
-                onClick={() => window.scrollTo({ top: navScrollTargets[link.key], behavior: "smooth" })}
+                onClick={() => scrollTo(link.key)}
                 className="hover:text-white transition-colors"
               >
                 {link.label}

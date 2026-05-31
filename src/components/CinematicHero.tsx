@@ -86,15 +86,15 @@ export default function CinematicHero() {
       });
 
       scrollTl
-        // PHASE 1: Intro text fades, card rises, scroll hint disappears
-        .to([".hero-text-wrapper", ".bg-grid-theme", ".scroll-hint"], { scale: 1.15, filter: "blur(20px)", opacity: 0, ease: "power2.inOut", duration: 2 }, 0)
-        .to(".main-card", { y: 0, ease: "power3.inOut", duration: 2 }, 0)
-        .to(".main-card", { width: "100%", height: "100%", borderRadius: "0px", ease: "power3.inOut", duration: 1.5 })
+        // PHASE 1: Intro text fades, card rises + phone appears simultaneously
+        .to([".hero-text-wrapper", ".bg-grid-theme", ".scroll-hint"], { scale: 1.15, filter: "blur(20px)", opacity: 0, ease: "power2.inOut", duration: 1.2 }, 0)
+        .to(".main-card", { y: 0, ease: "power3.inOut", duration: 1.2 }, 0)
+        .to(".main-card", { width: "100%", height: "100%", borderRadius: "0px", ease: "power3.inOut", duration: 0.8 })
 
-        // PHASE 2: Phone + Dashboard scene
+        // PHASE 2: Phone + Dashboard scene (starts overlapping with card expansion)
         .fromTo(".mockup-scroll-wrapper",
-          { y: 300, z: -500, rotationX: 50, rotationY: -30, autoAlpha: 0, scale: 0.6 },
-          { y: 0, z: 0, rotationX: 0, rotationY: 0, autoAlpha: 0.4, scale: 1, ease: "expo.out", duration: 2.5 }, "-=0.5"
+          { y: 200, z: -300, rotationX: 30, rotationY: -20, autoAlpha: 0, scale: 0.7 },
+          { y: 0, z: 0, rotationX: 0, rotationY: 0, autoAlpha: 0.6, scale: 1, ease: "expo.out", duration: 1.5 }, "-=0.6"
         )
         .to(".mockup-scroll-wrapper", { autoAlpha: 1, duration: 1.5, ease: "power2.inOut" }, "-=0.5")
         .fromTo(".phone-widget", { y: 40, autoAlpha: 0, scale: 0.95 }, { y: 0, autoAlpha: 1, scale: 1, stagger: 0.1, ease: "back.out(1.2)", duration: 1.2 }, "-=1.5")

@@ -36,6 +36,14 @@ export const services = [
     description: "Scroll-stopping content designed to go viral and boost engagement.",
   },
   {
+    title: "UGC Videos",
+    description: "Authentic user-generated style content that builds trust and converts.",
+  },
+  {
+    title: "Paid Ads & Campaign Optimization",
+    description: "Meta, Google, YouTube ads — strategy, creatives, and performance tracking.",
+  },
+  {
     title: "Graphic Design",
     description: "Creatives, menus, pamphlets, and designs that turn heads.",
   },
@@ -87,7 +95,7 @@ export const team = [
   },
   {
     name: "Sidharath Maurya",
-    role: "Video Editor",
+    role: "Lead Video Editor",
     vibe: "Every cut tells a story",
   },
   {
@@ -98,17 +106,16 @@ export const team = [
 ];
 
 // ============================================================
-// NAV — Scroll positions for single-page navigation
+// NAV — Scroll progress (0 to 1) for single-page navigation
+// These are percentages of total scroll, works on any device
 // ============================================================
-export const navScrollTargets: Record<string, number> = {
-  services: 6500,
-  about: 7000,
-  team: 9000,
-  contact: 12500, // For Let's Work Together CTA
+export const navScrollProgress: Record<string, number> = {
+  services: 0.35,  // Services section
+  team: 0.58,      // Team section
+  contact: 0.82,   // Contact / Let's Work Together
 };
 
 export const navLinks = [
   { label: "Services", key: "services" },
-  { label: "About", key: "about" },
   { label: "Team", key: "team" },
 ];

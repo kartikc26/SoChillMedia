@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,6 +15,11 @@ export default function CinematicHero() {
   const mainCardRef = useRef<HTMLDivElement>(null);
   const mockupRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef<number>(0);
+  const [currentSection, setCurrentSection] = useState(0);
+  const [isMobileView, setIsMobileView] = useState(false);
+  const scrollHintRef = useRef<HTMLDivElement>(null);
+  
+  const sections = ['dashboard', 'services', 'team', 'contact'];
 
   // Mouse interaction
   useEffect(() => {
@@ -47,6 +52,8 @@ export default function CinematicHero() {
       gsap.set([".phone-screen-services", ".phone-screen-team", ".phone-screen-contact"], { autoAlpha: 0 });
 
       const isMobile = window.innerWidth < 1024;
+      setIsMobileView(isMobile);
+      const scrollDistance = isMobile ? 7000 : 14000; // 50% shorter on mobile
 
       // Intro text animation
       const introTl = gsap.timeline({ delay: 0.3 });
@@ -54,21 +61,33 @@ export default function CinematicHero() {
         .to(".text-line-1", { duration: 1.4, autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", ease: "expo.out" })
         .to(".text-line-2", { duration: 1.4, autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", ease: "expo.out" }, "-=0.8");
 
-      // Master scroll timeline - pinned for ~14000px
+      // Scroll hint animation (pulsing chevrons)
+      gsap.set(".scroll-hint", { autoAlpha: 0, y: -20 });
+      gsap.to(".scroll-hint", { autoAlpha: 1, y: 0, delay: 1.5, duration: 0.8, ease: "expo.out" });
+      gsap.to(".scroll-hint-chevron", { y: 8, duration: 0.6, ease: "sine.inOut", repeat: -1, yoyo: true, stagger: 0.15 });
+
+      // Master scroll timeline - pinned for scrollDistance
       const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=14000",
+          end: `+=${scrollDistance}`,
           pin: true,
           scrub: 1.2,
           anticipatePin: 1,
+          onUpdate: (self) => {
+            const progress = self.progress;
+            if (progress < 0.25) setCurrentSection(0);
+            else if (progress < 0.5) setCurrentSection(1);
+            else if (progress < 0.75) setCurrentSection(2);
+            else setCurrentSection(3);
+          },
         },
       });
 
       scrollTl
-        // PHASE 1: Intro text fades, card rises
-        .to([".hero-text-wrapper", ".bg-grid-theme"], { scale: 1.15, filter: "blur(20px)", opacity: 0, ease: "power2.inOut", duration: 2 }, 0)
+        // PHASE 1: Intro text fades, card rises, scroll hint disappears
+        .to([".hero-text-wrapper", ".bg-grid-theme", ".scroll-hint"], { scale: 1.15, filter: "blur(20px)", opacity: 0, ease: "power2.inOut", duration: 2 }, 0)
         .to(".main-card", { y: 0, ease: "power3.inOut", duration: 2 }, 0)
         .to(".main-card", { width: "100%", height: "100%", borderRadius: "0px", ease: "power3.inOut", duration: 1.5 })
 
@@ -146,6 +165,56 @@ export default function CinematicHero() {
           go viral.
         </h1>
       </div>
+
+      {/* KEEP SCROLLING INDICATOR */}
+      <div
+        ref={scrollHintRef}
+        className="scroll-hint absolute z-10 bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
+      >
+        <p className="text-white/60 text-xs sm:text-sm font-semibold tracking-widest uppercase">Keep Scrolling</p>
+        <div className="flex flex-col items-center gap-1">
+          <svg className="scroll-hint-chevron w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+          <svg className="scroll-hint-chevron w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
+      </div>
+
+      {/* PROGRESS DOTS - Mobile Only */}
+      {isMobileView && (
+        <div className="progress-dots absolute z-30 right-4 sm:right-6 top-1/2 transform -translate-y-1/2 flex flex-col gap-3 pointer-events-auto">
+          {sections.map((section, idx) => (
+            <button
+              key={idx}
+              onClick={() => {
+                const scrollTriggers = ScrollTrigger.getAll();
+                const mainTrigger = scrollTriggers.find((t) => t.trigger === containerRef.current);
+                if (mainTrigger) {
+                  const totalScroll = mainTrigger.end - mainTrigger.start;
+                  const targetScroll = mainTrigger.start + idx * 0.25 * totalScroll;
+                  window.scrollTo({ top: targetScroll, behavior: "smooth" });
+                }
+              }}
+              aria-label={`Go to ${section} section`}
+              className={`transition-all duration-300 rounded-full ${
+                currentSection === idx
+                  ? "w-3 h-3 bg-blue-400 shadow-lg shadow-blue-400/50"
+                  : "w-2 h-2 bg-white/30 hover:bg-white/60"
+              }`}
+              title={section.charAt(0).toUpperCase() + section.slice(1)}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* TAP TO SCROLL HINT - Mobile Only */}
+      {isMobileView && (
+        <div className="absolute z-10 bottom-4 left-1/2 transform -translate-x-1/2 text-center pointer-events-none">
+          <p className="text-white/40 text-[10px] sm:text-xs font-medium tracking-widest uppercase">Scroll or tap dots</p>
+        </div>
+      )}
 
       {/* THE CARD */}
       <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none" style={{ perspective: "1500px" }}>
